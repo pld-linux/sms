@@ -1,12 +1,14 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
-Version:	1.8.9d
-Release:	3
+Version:	1.8.9e
+Release:	1
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
+Group(es):	Red/Utilitarios
 Group(pl):	Sieciowe/Narzêdzia
+Group(pt_BR):	Rede/Utilitários
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
