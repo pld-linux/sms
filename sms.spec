@@ -41,7 +41,7 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 %patch0 -p1
 
 %build
-%{__make} CC="%{__cc}" CXX="%{__cxx}" CFLAGS="%{rpmcflags}"
+%{__make} CC="%{__cc}" CXX="c++" CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
