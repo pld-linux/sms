@@ -2,7 +2,7 @@ Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.9i
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
@@ -12,6 +12,7 @@ Patch0:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	rpm-build >= 4.0.2-48
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,7 +42,7 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 %patch0 -p1
 
 %build
-%{__make} CC="%{__cc}" CXX="c++" CFLAGS="%{rpmcflags}"
+%{__make} CC="%{__cc}" CXX="%{__cxx}" CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
