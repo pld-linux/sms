@@ -1,8 +1,8 @@
 Summary:	Program send SMS
-Summary(pl):	Program do wysylania SMS
+Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.8e
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -14,10 +14,10 @@ BuildRequires:	tar
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This program send SMS to phone Era, Plus and Idea.
+This program sends SMS to phone Era, Plus and Idea.
 
 %description -l pl
-Program potrafi wysylac wiadomosci na telefony sieci Era, Plus oraz
+Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
 %prep
