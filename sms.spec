@@ -24,7 +24,7 @@ Idea.
 %patch0 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} CC="%{__cc}" CXX="%{__cxx}" CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
