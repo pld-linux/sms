@@ -5,10 +5,6 @@ Version:	1.8.9h
 Release:	2
 License:	GPL
 Group:		Networking/Utilities
-Group(de):	Netzwerkwesen/Werkzeuge
-Group(es):	Red/Utilitarios
-Group(pl):	Sieciowe/Narzêdzia
-Group(pt_BR):	Rede/Utilitários
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 Patch:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
