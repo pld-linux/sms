@@ -44,11 +44,9 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},/usr/X11R6/bin,%{_applnkdir}/Network/Misc}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Network/Misc}
 
-install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
-install contrib/tksms/tksms $RPM_BUILD_ROOT/usr/X11R6/bin/
-install contrib/tksms/sms_wr $RPM_BUILD_ROOT/usr/X11R6/bin/
+install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
@@ -59,11 +57,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* doc/*
 %doc contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html}
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/sms{,addr}
 
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/X11R6/bin/*
+%attr(755,root,root) %{_bindir}/{tksms,sms_wr}
 %doc contrib/tksms/README
 %{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*.png
