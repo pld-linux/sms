@@ -9,9 +9,9 @@ Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.
 # Source0-md5:	6651efecd15f93e78b08f225e77b3e60
 Source1:	smsq
 URL:		http://ceti.pl/~miki/komputery/sms.html
+BuildRequires:	curl-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	curl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pcre++-devel
 BuildRequires:	rpm-build >= 4.0.2-48
@@ -27,7 +27,7 @@ Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %{__make} \
