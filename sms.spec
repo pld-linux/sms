@@ -20,18 +20,18 @@ This program sends SMS to phone Era, Plus and Idea.
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
-%package -n sms-X11
+%package X11
 Summary:	Program send SMS - Tk interface
 Summary(pl):	Program do wysy³ania SMS - interfejs w Tk
 Group:		Networking/Utilities
 Requires:	sms = %{version}
 Requires:	perl-Tk
 
-%description -n sms-X11
+%description X11
 This program sends SMS to phone Era, Plus and Idea.
 This package allows to use simple Tk X11 interface.
 
-%description -n sms-X11 -l pl
+%description X11 -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README* contrib/*.gz doc/*.gz
 %attr(755,root,root) %{_bindir}/*
 
-%files -n sms-X11
+%files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) /usr/X11R6/bin/*
 %{_applnkdir}/Network/Misc/sms-Tk
