@@ -1,11 +1,12 @@
-Summary:	Program send SMS
-Summary(pl):	Program do wysy³ania SMS
+Summary:	Send SMs via Polish GSM operators
+Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs)
 Name:		sms
-Version:	1.9.1f
-Release:	2
+Version:	1.9.2l
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
+# Source0-md5:	fe3be2f85ea45262bbe52fbcc8fa4f0a
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	smsq
@@ -16,22 +17,24 @@ BuildRequires:	rpm-build >= 4.0.2-48
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This program sends SMS to Era, Plus and Idea networks.
+This program sends SMs to mobile phones operaterd by Polish GSM
+operators: Era, Plus and Idea.
 
 %description -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
 %package X11
-Summary:	Program send SMS - Tk interface
-Summary(pl):	Program do wysy³ania SMS - interfejs w Tk
+Summary:	Send SMs via Polish GSM operators - Tk interface
+Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs) - interfejs w Tk
 Group:		Networking/Utilities
 Requires:	sms = %{version}
 Requires:	perl-Tk
 
 %description X11
-This program sends SMS to Era, Plus and Idea networks. This package
-allows to use simple Tk X11 interface.
+This program sends SMS to mobile phones operated by Polish GSM
+operators Era, Plus and Idea networks. This package allows to use
+simple Tk X11 interface.
 
 %description X11 -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
@@ -48,10 +51,10 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Network/Misc}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_desktopdir}}
 
 install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
 
@@ -71,5 +74,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sms_wr
 %attr(755,root,root) %{_bindir}/tksms
 %doc contrib/tksms/README
-%{_applnkdir}/Network/Misc/*
+%{_desktopdir}/sms-Tk.desktop
 %{_pixmapsdir}/*.png
