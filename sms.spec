@@ -1,5 +1,5 @@
-Summary:	Program send SMS
-Summary(pl):	Program do wysy³ania SMS
+Summary:	Send SMs via Polish GSM operators
+Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs)
 Name:		sms
 Version:	1.9.2g
 Release:	1
@@ -18,22 +18,24 @@ BuildRequires:	rpm-build >= 4.0.2-48
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This program sends SMS to Era, Plus and Idea networks.
+This program sends SMs to mobile phones operaterd by Polish GSM operators:
+Era, Plus and Idea.
 
 %description -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
 %package X11
-Summary:	Program send SMS - Tk interface
-Summary(pl):	Program do wysy³ania SMS - interfejs w Tk
+Summary:	Send SMs via Polish GSM operators - Tk interface
+Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs) - interfejs w Tk
 Group:		Networking/Utilities
 Requires:	sms = %{version}
 Requires:	perl-Tk
 
 %description X11
-This program sends SMS to Era, Plus and Idea networks. This package
-allows to use simple Tk X11 interface.
+This program sends SMS to mobile phones operated by Polish GSM operators
+Era, Plus and Idea networks. This package allows to use simple Tk X11
+interface.
 
 %description X11 -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
