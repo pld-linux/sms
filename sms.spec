@@ -7,7 +7,6 @@ License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 # Source0-md5:	5edf805baa312b1b0fc6a2a1aa6bbc9f
-# Source0-size:	47578
 Source1:	smsq
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	curl-devel
