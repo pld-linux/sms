@@ -8,6 +8,7 @@ Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
+Source3:	smsq
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
@@ -52,6 +53,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Network/Misc}
 install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,6 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html}
 %attr(755,root,root) %{_bindir}/sms
 %attr(755,root,root) %{_bindir}/smsaddr
+%attr(755,root,root) %{_bindir}/smsq
 
 %files X11
 %defattr(644,root,root,755)
