@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* doc/readme.html
+%doc Changelog README* doc/readme.html
 %doc contrib/{mimecut,procmailrc,sms-get}
 %attr(755,root,root) %{_bindir}/sms
 %attr(755,root,root) %{_bindir}/smsaddr
