@@ -15,6 +15,7 @@ BuildRequires:	curl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pcre++-devel
 BuildRequires:	rpm-build >= 4.0.2-48
+Obsoletes:	sms-X11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
