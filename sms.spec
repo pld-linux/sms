@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
+# Source0-md5: fef6df747bc83fe4318cb1f6951fcf99
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	smsq
