@@ -1,7 +1,7 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysylania SMS
 Name:		sms
-Version:	1.8.7
+Version:	1.8.7a
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
@@ -21,7 +21,7 @@ Program potrafi wysylac wiadomosci na telefony sieci Era, Plus oraz
 Idea.
 
 %prep
-%setup  -q -n sms
+%setup  -q -n %{name}
 
 %build
 %{__make} CFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}"
