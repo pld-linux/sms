@@ -1,0 +1,42 @@
+diff -ruN sms.org/addrbook.cc sms/addrbook.cc
+--- sms.org/addrbook.cc	Sun Jun 24 00:34:36 2001
++++ sms/addrbook.cc	Sat Jun  1 21:34:34 2002
+@@ -31,7 +31,10 @@
+         static char file[MAXPATHLEN];
+         
+         if (!(pwd = getpwuid(getuid()))) return NULL;
+-        snprintf(file, sizeof(file)-1, "%s/%s", pwd->pw_dir, ADDRDB);
++	if (getenv("CONFIG_DIR"))
++		snprintf(file, sizeof(file)-1, "%s/%s/%s", pwd->pw_dir, getenv("CONFIG_DIR"), ADDRDB);
++	else
++		snprintf(file, sizeof(file)-1, "%s/.%s", pwd->pw_dir, ADDRDB);
+         return file;
+ }
+ 
+diff -ruN sms.org/addrbook.h sms/addrbook.h
+--- sms.org/addrbook.h	Sun Feb 20 02:59:53 2000
++++ sms/addrbook.h	Sat Jun  1 21:33:18 2002
+@@ -3,7 +3,7 @@
+ // jesli uruchomi sie program pod ta nazwa to bedzie mozna obrabiac ksiazke
+ // adresowa
+ #define SMSADDR "smsaddr"
+-#define ADDRDB  ".smsaddr"
++#define ADDRDB  "smsaddr"
+ 
+ 
+ int addr_main(int argc, char **argv);
+diff -ruN sms.org/main.cc sms/main.cc
+--- sms.org/main.cc	Sat Jun  1 21:27:13 2002
++++ sms/main.cc	Sat Jun  1 21:31:43 2002
+@@ -351,7 +351,10 @@
+ 		
+ 		// potem z katalogu uzytkownika
+ 		if (pwd = getpwuid(getuid())) {
+-			snprintf(file, sizeof(file)-1,"%s/.smsrc", pwd->pw_dir);
++			if (getenv("CONFIG_DIR"))
++				snprintf(file, sizeof(file)-1,"%s/%s/smsrc", pwd->pw_dir, getenv("CONFIG_DIR"));
++			else
++				snprintf(file, sizeof(file)-1,"%s/.smsrc", pwd->pw_dir);
+ 			odczytaj_konfig(file);
+ 		}
+ 
