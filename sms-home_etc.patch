@@ -1,6 +1,6 @@
 diff -ruN sms.org/README.smsrc sms/README.smsrc
 --- sms.org/README.smsrc	Thu Jun 14 23:47:12 2001
-+++ sms/README.smsrc	Sat Jun  1 21:52:05 2002
++++ sms/README.smsrc	Wed Jun  5 23:42:58 2002
 @@ -4,8 +4,10 @@
  #
  # Po uruchomieniu program stara sie odczytac najpierw systemowy plik
@@ -16,22 +16,31 @@ diff -ruN sms.org/README.smsrc sms/README.smsrc
  # linie rozpoczynajace sie od znaku '#' sa ignorowane
 diff -ruN sms.org/addrbook.cc sms/addrbook.cc
 --- sms.org/addrbook.cc	Sun Jun 24 00:34:36 2001
-+++ sms/addrbook.cc	Sat Jun  1 21:48:33 2002
-@@ -31,7 +31,10 @@
++++ sms/addrbook.cc	Thu Jun  6 00:47:41 2002
+@@ -31,7 +31,19 @@
          static char file[MAXPATHLEN];
          
          if (!(pwd = getpwuid(getuid()))) return NULL;
 -        snprintf(file, sizeof(file)-1, "%s/%s", pwd->pw_dir, ADDRDB);
-+	if (getenv("CONFIG_DIR"))
-+		snprintf(file, sizeof(file)-1, "%s/%s/%s", pwd->pw_dir, getenv("CONFIG_DIR"), ADDRDB);
++	char *path;
++	if ( (path=getenv("CONFIG_DIR")) && path[0] ) {
++		path=(char*) calloc(strlen(pwd->pw_dir)+strlen(getenv("CONFIG_DIR"))+2,1);
++		strcat(path, pwd->pw_dir);
++		strcat(path, "/");
++		strcat(path, getenv("CONFIG_DIR"));
++	} else path=NULL;
++	if ( path && stat(path,&buf)!=-1 && S_ISDIR(buf.st_mode) )
++		snprintf(file, sizeof(file)-1, "%s/%s", path, ADDRDB);
 +	else
 +		snprintf(file, sizeof(file)-1, "%s/.%s", pwd->pw_dir, ADDRDB);
++	if (path)
++		free(path);
          return file;
  }
  
 diff -ruN sms.org/addrbook.h sms/addrbook.h
 --- sms.org/addrbook.h	Sun Feb 20 02:59:53 2000
-+++ sms/addrbook.h	Sat Jun  1 21:48:33 2002
++++ sms/addrbook.h	Wed Jun  5 23:42:58 2002
 @@ -3,7 +3,7 @@
  // jesli uruchomi sie program pod ta nazwa to bedzie mozna obrabiac ksiazke
  // adresowa
@@ -42,17 +51,35 @@ diff -ruN sms.org/addrbook.h sms/addrbook.h
  
  int addr_main(int argc, char **argv);
 diff -ruN sms.org/main.cc sms/main.cc
---- sms.org/main.cc	Sat Jun  1 21:48:00 2002
-+++ sms/main.cc	Sat Jun  1 21:48:33 2002
-@@ -351,7 +351,10 @@
+--- sms.org/main.cc	Thu Jun  6 00:45:56 2002
++++ sms/main.cc	Thu Jun  6 00:48:52 2002
+@@ -2,6 +2,7 @@
+ #include <pwd.h>
+ #include <sys/types.h>
+ #include <sys/param.h>
++#include <sys/stat.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+@@ -351,7 +352,20 @@
  		
  		// potem z katalogu uzytkownika
  		if (pwd = getpwuid(getuid())) {
 -			snprintf(file, sizeof(file)-1,"%s/.smsrc", pwd->pw_dir);
-+			if (getenv("CONFIG_DIR"))
-+				snprintf(file, sizeof(file)-1,"%s/%s/smsrc", pwd->pw_dir, getenv("CONFIG_DIR"));
++			struct stat st;
++			char *path;
++			if ( (path=getenv("CONFIG_DIR")) && path[0] ) {
++				path=(char*) calloc(strlen(pwd->pw_dir)+strlen(getenv("CONFIG_DIR"))+2,1);
++				strcat(path, pwd->pw_dir);
++				strcat(path, "/");
++				strcat(path, getenv("CONFIG_DIR"));
++			} else path=NULL;
++			if ( path && stat(path,&st)!=-1 && S_ISDIR(st.st_mode) )
++				snprintf(file, sizeof(file)-1,"%s/smsrc", path);
 +			else
 +				snprintf(file, sizeof(file)-1,"%s/.smsrc", pwd->pw_dir);
++			if (path)
++				free(path);
  			odczytaj_konfig(file);
  		}
  
