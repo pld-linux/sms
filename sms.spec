@@ -4,6 +4,7 @@ Name:		sms
 Version:	1.8.8f
 Release:	1
 License:	GPL
+URL:		http://ceti.pl/~miki/komputery/sms.html
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
 Group(pl):	Sieciowe/Narzêdzia
