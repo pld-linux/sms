@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Tk SmS
-Comment=Simple interface to sms aplication
-Comment[pl]=Prosty interfejs dla programu sms
-Exec=tksms
-Icon=sms.png
-Terminal=0
-Type=Application
-# vi: encoding=utf-8
