@@ -2,7 +2,7 @@ Summary:	Send SMs via Polish GSM operators
 Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs)
 Name:		sms
 Version:	1.9.2g
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
@@ -18,8 +18,8 @@ BuildRequires:	rpm-build >= 4.0.2-48
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This program sends SMs to mobile phones operaterd by Polish GSM operators:
-Era, Plus and Idea.
+This program sends SMs to mobile phones operaterd by Polish GSM
+operators: Era, Plus and Idea.
 
 %description -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
@@ -33,9 +33,9 @@ Requires:	sms = %{version}
 Requires:	perl-Tk
 
 %description X11
-This program sends SMS to mobile phones operated by Polish GSM operators
-Era, Plus and Idea networks. This package allows to use simple Tk X11
-interface.
+This program sends SMS to mobile phones operated by Polish GSM
+operators Era, Plus and Idea networks. This package allows to use
+simple Tk X11 interface.
 
 %description X11 -l pl
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
