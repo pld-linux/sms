@@ -2,7 +2,7 @@ Summary:	Send SMs via Polish GSM operators
 Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs)
 Name:		sms
 Version:	1.9.2l
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
@@ -51,12 +51,19 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_desktopdir},%{_mandir}/{{man1,man5},pl/{man1,man5}}}
 
 install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
+
+%{__mv} doc/man	   .
+install man/{sms.1,smsaddr.1}   	$RPM_BUILD_ROOT%{_mandir}/man1
+install man/smsrc.5			$RPM_BUILD_ROOT%{_mandir}/man5
+install man/smsrc.pl.5			$RPM_BUILD_ROOT%{_mandir}/pl/man5/smsrc.5
+install man/sms.pl.1			$RPM_BUILD_ROOT%{_mandir}/pl/man1/sms.1
+install man/smsaddr.pl.1		$RPM_BUILD_ROOT%{_mandir}/pl/man1/smsaddr.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* doc/*
 %doc contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html}
+%{_mandir}/*
 %attr(755,root,root) %{_bindir}/sms
 %attr(755,root,root) %{_bindir}/smsaddr
 %attr(755,root,root) %{_bindir}/smsq
