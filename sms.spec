@@ -2,7 +2,7 @@ Summary:	Send SMs via Polish GSM operators
 Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMs)
 Name:		sms
 Version:	1.9.2l
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
