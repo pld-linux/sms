@@ -1,7 +1,7 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysylania SMS
 Name:		sms
-Version:	1.8.7b
+Version:	1.8.8 
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
