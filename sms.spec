@@ -51,10 +51,10 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Network/Misc}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_desktopdir}}
 
 install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
 
@@ -74,5 +74,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sms_wr
 %attr(755,root,root) %{_bindir}/tksms
 %doc contrib/tksms/README
-%{_applnkdir}/Network/Misc/*
+%{_desktopdir}/sms-Tk.desktop
 %{_pixmapsdir}/*.png
