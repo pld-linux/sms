@@ -40,7 +40,7 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
+%patch0 -p1
 %patch1 -p1
 
 %build
