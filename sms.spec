@@ -40,7 +40,10 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 %setup -q -n %{name}
 
 %build
-%{__make} CC="%{__cc}" CXX="%{__cxx}" CFLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	CFLAGS="%{rpmcflags} -fno-rtti"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -57,11 +60,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* doc/*
 %doc contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html}
-%attr(755,root,root) %{_bindir}/sms{,addr}
+%attr(755,root,root) %{_bindir}/sms
+%attr(755,root,root) %{_bindir}/smsaddr
 
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/{tksms,sms_wr}
+%attr(755,root,root) %{_bindir}/sms_wr
+%attr(755,root,root) %{_bindir}/tksms
 %doc contrib/tksms/README
 %{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*.png
