@@ -7,5 +7,5 @@ Exec=tksms
 Icon=sms.png
 Terminal=false
 Type=Application
-Categories=Network
+Categories=Network;
 # vi: encoding=utf-8
