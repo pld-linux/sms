@@ -1,11 +1,12 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
-Version:	1.9.1f
-Release:	2
+Version:	1.9.2d
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
+# Source0-md5:	6d1b64ba8ef7a85ec38dafe2e93919f9
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	smsq
@@ -48,9 +49,11 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Network/Misc}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},/usr/X11R6/bin,%{_applnkdir}/Network/Misc}
 
-install {sms{,addr},contrib/tksms/{tksms,sms_wr}} $RPM_BUILD_ROOT%{_bindir}
+install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
+install contrib/tksms/tksms $RPM_BUILD_ROOT/usr/X11R6/bin/
+install contrib/tksms/sms_wr $RPM_BUILD_ROOT/usr/X11R6/bin/
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
@@ -68,8 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/sms_wr
-%attr(755,root,root) %{_bindir}/tksms
+%attr(755,root,root) /usr/X11R6/bin/*
 %doc contrib/tksms/README
 %{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*.png
