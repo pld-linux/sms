@@ -3,7 +3,7 @@ Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMS)
 Name:		sms
 Version:	2.0.0
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 # Source0-md5:	6651efecd15f93e78b08f225e77b3e60
