@@ -37,7 +37,7 @@ Idea.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_desktopdir},%{_mandir}/{{man1,man5},pl/{man1,man5}}}
+install -d $RPM_BUILD_ROOT%{_bindir}
 
 install sms $RPM_BUILD_ROOT%{_bindir}
 install smsaddr $RPM_BUILD_ROOT%{_bindir}
