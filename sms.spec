@@ -1,8 +1,8 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
-Version:	1.8.9i
-Release:	7
+Version:	1.9.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
@@ -40,7 +40,7 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 
 %build
