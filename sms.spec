@@ -2,7 +2,7 @@ Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.9h
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -10,6 +10,7 @@ Group(es):	Red/Utilitarios
 Group(pl):	Sieciowe/Narzêdzia
 Group(pt_BR):	Rede/Utilitários
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
+Patch:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
@@ -24,9 +25,10 @@ Idea.
 
 %prep
 %setup  -q -n %{name}
+%patch0 -p1
 
 %build
-%{__make} CC=%{__cc} CFLAGS="%{rpmcflags}"
+%{__make} CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
