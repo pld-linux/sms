@@ -1,7 +1,7 @@
 Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
-Version:	1.8.9g
+Version:	1.8.9h
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
@@ -26,7 +26,7 @@ Idea.
 %setup  -q -n %{name}
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} CC=%{__cc} CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
