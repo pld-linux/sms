@@ -1,0 +1,67 @@
+#!/bin/sh
+
+SMS=/usr/bin/sms
+DIR=$HOME/.smsq
+ACTION=
+HELP="\
+This program is used to queue outgoing sms messages.
+Copyright 2003 by Filip Kalinski <filon@pld.org.pl>.
+
+Usage: smsq action
+       smsq [sms options] number message
+
+Where action can be one of: send, flush, list or count.\
+"
+
+# create queue directory
+mkdir -p $DIR >/dev/null 2>&1 || :
+
+# parse program arguments
+if [ "$#" -eq 1 ]; then
+	ACTION="$1"
+elif [ "$#" -eq 2 ]; then
+	ACTION=""
+else
+	echo "$HELP"
+	exit 0
+fi
+
+cd $DIR
+if [ -z "$ACTION" ]; then
+	# add to queue
+	LAST=`find | sed 's|./||' | sort -n | tail -1`
+	NEXT=`echo $LAST + 1 | bc`
+	echo $@ > $DIR/$NEXT
+else
+	n=0;
+	for f in *; do
+		if [ -f "$f" ]; then
+			n=`echo $n+1 | bc`
+			# perform an action
+			if [ "$ACTION" = "flush" ]; then
+				rm -f $f
+			elif [ "$ACTION" = "list" ]; then
+				echo "$n: `cat $f`"
+			elif [ "$ACTION" = "send" ]; then
+				echo "sending $n: `cat $f`"
+				$SMS `cat $f`
+				RES=$?
+				if [ "$RES" -eq 0 ]; then
+					rm -f $f
+					echo "OK"
+				else
+					echo "FAIL"
+				fi
+			elif [ "$ACTION" != "count" ]; then
+				echo "unknown action!"
+				echo "$HELP"
+				exit 1
+			fi
+		fi
+	done
+	if [ "$ACTION" = "flush" ]; then
+		echo "flushed"
+	elif [ "$ACTION" != "send" ]; then
+		echo "$n message(s) in queue"
+	fi
+fi
