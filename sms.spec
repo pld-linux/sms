@@ -2,7 +2,7 @@ Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.9i
-Release:	4
+Release:	5
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
@@ -51,7 +51,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},/usr/X11R6/bin,%{_applnkdir
 install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
 install contrib/tksms/tksms $RPM_BUILD_ROOT/usr/X11R6/bin/
 install contrib/tksms/sms_wr $RPM_BUILD_ROOT/usr/X11R6/bin/
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 gzip -9nf README* contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html} \
 		contrib/tksms/README doc/*
@@ -67,6 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) /usr/X11R6/bin/*
-%{_applnkdir}/Network/Misc/sms-Tk
+%{_applnkdir}/Network/Misc/*
 %doc contrib/tksms/*.gz
-%{_pixmapsdir}/sms.png
+%{_pixmapsdir}/*.png
