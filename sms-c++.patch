@@ -1,40 +1,7 @@
-diff -urN sms.org/cgdbm.cc sms/cgdbm.cc
---- sms.org/cgdbm.cc	Sun Sep 29 17:15:14 2002
-+++ sms/cgdbm.cc	Sun Sep 29 17:15:47 2002
-@@ -92,7 +92,7 @@
-     db = NULL;
- }
- 
--Cgdbm::Cgdbm(const char *_filename, int block_size, int read_write, int mode = 0600)
-+Cgdbm::Cgdbm(const char *_filename, int block_size, int read_write, int mode)
- {
-     filename = NULL;
-     db = NULL;
-@@ -104,7 +104,7 @@
-     Close();
- }
- 
--int Cgdbm::Open(const char *_filename, int block_size, int read_write, int mode = 0600)
-+int Cgdbm::Open(const char *_filename, int block_size, int read_write, int mode)
- {
-     if (db != NULL) Close();
-     db = gdbm_open((char*)_filename, block_size, read_write, mode, NULL);
-diff -urN sms.org/debug.cc sms/debug.cc
---- sms.org/debug.cc	Sun Sep 29 17:15:14 2002
-+++ sms/debug.cc	Sun Sep 29 17:17:48 2002
-@@ -37,7 +37,7 @@
-     VSPRINTF(buf, sizeof(buf)-1, msg, args);
-     va_end(args);
- 
--    stream << buf << endl;
-+    stream << buf << std::endl;
- }
- 
- Exception::Exception(const char *str)
 diff -urN sms.org/main.cc sms/main.cc
 --- sms.org/main.cc	Sun Sep 29 17:15:14 2002
 +++ sms/main.cc	Sun Sep 29 17:16:53 2002
-@@ -223,7 +223,7 @@
+@@ -290,7 +290,7 @@
  		s.freeze(0);
  	} else {
  		// pobieramy z linii polecen
