@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
+Source1:	%{name}.desktop
 Patch0:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
@@ -19,6 +20,21 @@ This program sends SMS to phone Era, Plus and Idea.
 Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
 Idea.
 
+%package -n sms-X11
+Summary:	Program send SMS - Tk interface
+Summary(pl):	Program do wysy³ania SMS - interfejs w Tk
+Group:		Networking/Utilities
+Requires:	sms = %{version}
+Requires:	perl-Tk
+
+%description -n sms-X11
+This program sends SMS to phone Era, Plus and Idea.
+This package allows to use simple Tk X11 interface.
+
+%description -n sms-X11 -l pl
+Program potrafi wysy³aæ wiadomo¶ci na telefony sieci Era, Plus oraz
+Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
+
 %prep
 %setup  -q -n %{name}
 %patch0 -p1
@@ -28,17 +44,26 @@ Idea.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_bindir},/usr/X11R6/bin,%{_applnkdir}/Network/Misc}
 
 install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
+install contrib/tksms/tksms $RPM_BUILD_ROOT/usr/X11R6/bin/
+install contrib/tksms/sms_wr $RPM_BUILD_ROOT/usr/X11R6/bin/
+install %{SOURCE1} $RPM_BUILD_ROOT/%{_applnkdir}/Network/Misc/sms-Tk
 
 gzip -9nf README* contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html} \
-		contrib/tksms/* doc/*
+		contrib/tksms/README doc/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* contrib doc
+%doc README* contrib/*.gz doc/*.gz
 %attr(755,root,root) %{_bindir}/*
+
+%files -n sms-X11
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/X11R6/bin/*
+%{_applnkdir}/Network/Misc/sms-Tk
+%doc contrib/tksms/*.gz
