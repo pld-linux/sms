@@ -58,7 +58,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/sms-Tk.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}
 
-%{__mv} doc/man	   .
+mv -f doc/man .
 install man/{sms.1,smsaddr.1}   	$RPM_BUILD_ROOT%{_mandir}/man1
 install man/smsrc.5			$RPM_BUILD_ROOT%{_mandir}/man5
 install man/smsrc.pl.5			$RPM_BUILD_ROOT%{_mandir}/pl/man5/smsrc.5
@@ -72,10 +72,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* doc/*
 %doc contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html}
-%{_mandir}/*
 %attr(755,root,root) %{_bindir}/sms
 %attr(755,root,root) %{_bindir}/smsaddr
 %attr(755,root,root) %{_bindir}/smsq
+%{_mandir}/man1/sms.1*
+%{_mandir}/man1/smsaddr.1*
+%{_mandir}/man5/smsrc.5*
+%lang(pl) %{_mandir}/pl/man1/sms.1*
+%lang(pl) %{_mandir}/pl/man1/smsaddr.1*
+%lang(pl) %{_mandir}/pl/man5/smsrc.5*
 
 %files X11
 %defattr(644,root,root,755)
