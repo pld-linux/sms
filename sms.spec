@@ -6,7 +6,7 @@ Release:	2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
-Patch:		%{name}-c++.patch
+Patch0:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
@@ -40,4 +40,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README* contrib doc
-%attr(755,root,root) %{_bindir}/* 
+%attr(755,root,root) %{_bindir}/*
