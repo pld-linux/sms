@@ -2,7 +2,7 @@ Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.9d
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -32,15 +32,12 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
 
-tar czf contrib.tar.gz contrib
-tar czf doc.tar.gz doc
-
-gzip -9nf README*
+gzip -9nf README* contrib/* doc/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* contrib.tar.gz doc.tar.gz
+%doc README* contrib doc
 %attr(755,root,root) %{_bindir}/* 
