@@ -1,0 +1,24 @@
+diff -ur sms/debug.cc sms.new/debug.cc
+--- sms/debug.cc	Wed Oct 18 11:19:30 2000
++++ sms.new/debug.cc	Thu Jan 24 01:58:53 2002
+@@ -37,7 +37,7 @@
+     VSPRINTF(buf, sizeof(buf)-1, msg, args);
+     va_end(args);
+ 
+-    stream << buf << endl;
++    stream << buf << std::endl;
+ }
+ 
+ Exception::Exception(const char *str)
+diff -ur sms/main.cc sms.new/main.cc
+--- sms/main.cc	Thu Jan 24 01:59:40 2002
++++ sms.new/main.cc	Thu Jan 24 01:58:17 2002
+@@ -207,7 +209,7 @@
+ 		s.freeze(0);
+ 	} else {
+ 		// pobieramy z linii polecen
+-		string msg;
++		std::string msg;
+ 
+ 		for(int i=start_arg; i<argc; i++)
+ 			msg = msg + ((i>start_arg)?" ":"") + argv[i];
