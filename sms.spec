@@ -2,11 +2,12 @@ Summary:	Program send SMS
 Summary(pl):	Program do wysy³ania SMS
 Name:		sms
 Version:	1.8.9i
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
+Source2:	%{name}.png
 Patch0:		%{name}-c++.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	gdbm-devel
@@ -44,13 +45,13 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},/usr/X11R6/bin,%{_applnkdir}/Network/Misc}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},/usr/X11R6/bin,%{_applnkdir}/Network/Misc}
 
 install sms smsaddr $RPM_BUILD_ROOT%{_bindir}
 install contrib/tksms/tksms $RPM_BUILD_ROOT/usr/X11R6/bin/
 install contrib/tksms/sms_wr $RPM_BUILD_ROOT/usr/X11R6/bin/
-install %{SOURCE1} $RPM_BUILD_ROOT/%{_applnkdir}/Network/Misc/sms-Tk
-
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/sms-Tk
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 gzip -9nf README* contrib/{gtksms,mimecut,procmailrc,sms-conf,sms.cgi,sms.html} \
 		contrib/tksms/README doc/*
 
@@ -67,3 +68,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/X11R6/bin/*
 %{_applnkdir}/Network/Misc/sms-Tk
 %doc contrib/tksms/*.gz
+%{_pixmapsdir}/sms.png
