@@ -7,7 +7,6 @@ License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 # Source0-md5:	fe3be2f85ea45262bbe52fbcc8fa4f0a
-Patch0:		%{name}-gcc33.patch
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	smsq
@@ -43,7 +42,6 @@ Idea. Ten pakiet dostarcza prosty interfejs w Tk dla X11.
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
 
 %build
 %{__make} \
