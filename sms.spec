@@ -1,3 +1,7 @@
+
+#NOTE:	latest working ver of curl with ideambox is 7.12.1
+#	tested on 7.12.1-7.14.0
+
 Summary:	Send SMS via Polish GSM operators
 Summary(pl):	Program do wysy³ania krótkich wiadomo¶ci (SMS)
 Name:		sms
