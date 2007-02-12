@@ -3,7 +3,7 @@
 #	tested on 7.12.1-7.14.0
 
 Summary:	Send SMS via Polish GSM operators
-Summary(pl.UTF-8):   Program do wysyłania krótkich wiadomości (SMS)
+Summary(pl.UTF-8):	Program do wysyłania krótkich wiadomości (SMS)
 Name:		sms
 Version:	2.1.0
 Release:	1
