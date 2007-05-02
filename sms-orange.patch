@@ -1,0 +1,14 @@
+--- orangembox.cc	2006-12-26 02:58:14.000000000 +0100
++++ orangembox.cc-new	2007-05-02 02:13:43.036573158 +0200
+@@ -57,9 +57,9 @@
+ 			" ");
+ 		form.AddField("_DARGS", "/gear/static/signIn.jsp");
+ 		
+-		status = curl.PerformPost("https://www.orange.pl/portal/map/map/signin?_DARGS=/gear/static/signIn.jsp",
++		status = curl.PerformPost("https://www.orange.pl/portal/map/map/signin?_DARGS=/gear/static/signInLoginBox.jsp",
+ 			form.PostFields());
+-		if (status) throw Exception("[2] - https://www.orange.pl/portal/map/map/signin?_DARGS=/gear/static/signIn.jsp");
++		if (status) throw Exception("[2] - https://www.orange.pl/portal/map/map/signin?_DARGS=/gear/static/signInLoginBox.jsp");
+ 
+ 		ok = curl.Body().find("zalogowany jako") != string::npos;
+ 		if (!ok) throw Exception("[2] - błąd podczas logowania");
