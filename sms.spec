@@ -6,12 +6,13 @@ Summary:	Send SMS via Polish GSM operators
 Summary(pl.UTF-8):	Program do wysyłania krótkich wiadomości (SMS)
 Name:		sms
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 # Source0-md5:	dcbf973d5eaea710d31a65e6ca2fb6fb
 Source1:	smsq
+Patch0:		%{name}-orange.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	curl-devel
 BuildRequires:	gdbm-devel
@@ -32,6 +33,7 @@ Idea.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %{__make} \
