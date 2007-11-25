@@ -11,29 +11,31 @@ License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://www.ceti.pl/~miki/komputery/download/sms/%{name}-%{version}.tar.gz
 # Source0-md5:	dcbf973d5eaea710d31a65e6ca2fb6fb
-Source1:	smsq
+Source1:	%{name}q
 Patch0:		%{name}-orange.patch
+Patch1:		%{name}-miastoplusa.patch
 URL:		http://ceti.pl/~miki/komputery/sms.html
 BuildRequires:	curl-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	pcre-devel
 BuildRequires:	pcre++-devel
+BuildRequires:	pcre-devel
 BuildRequires:	rpm-build >= 4.0.2-48
 Obsoletes:	sms-X11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This program sends SMS to mobile phones operaterd by Polish GSM
-operators: Era, Plus and Idea.
+operators: Era, Plus and Orange.
 
 %description -l pl.UTF-8
 Program potrafi wysyłać wiadomości na telefony sieci Era, Plus oraz
-Idea.
+Orange.
 
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p0
 
 %build
 %{__make} \
