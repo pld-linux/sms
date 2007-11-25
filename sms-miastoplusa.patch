@@ -1,0 +1,146 @@
+*** miastoplusa.cc	2007-11-20 01:56:26.000000000 +0100
+--- miastoplusa.cc-new	2007-11-20 01:56:29.000000000 +0100
+***************
+*** 23,38 ****
+  	curl.SetOpt(CURLOPT_COOKIEFILE, "");
+  	
+  	while (true) {
+! 		status = curl.PerformGet("http://www.miastoplusa.pl/");
+! 		if (status) throw Exception("[1] - get http://www.miastoplusa.pl/");
+  
+  		form.AddField("login", mp_user);
+  		form.AddField("password", mp_pass);
+  		form.AddField("x", "0");
+  		form.AddField("y", "0");
+! 		form.AddField("secureLogin", "on");
+! 		status = curl.PerformPost("https://www.miastoplusa.pl/auth/LoginCitizen.do", form.PostFields());
+! 		if (status) throw Exception("[2] - post https://www.miastoplusa.pl/auth/LoginCitizen.do");
+  
+  		form.Reset();
+  		form.AddField("smsType", "10");
+--- 23,38 ----
+  	curl.SetOpt(CURLOPT_COOKIEFILE, "");
+  	
+  	while (true) {
+! 		status = curl.PerformGet("http://www1.plus.pl/");
+! 		if (status) throw Exception("[1] - get http://www1.plus.pl/");
+  
+  		form.AddField("login", mp_user);
+  		form.AddField("password", mp_pass);
+  		form.AddField("x", "0");
+  		form.AddField("y", "0");
+! 		form.AddField("op", "login");
+! 		status = curl.PerformPost("https://www1.plus.pl/sso/logowanie/auth", form.PostFields());
+! 		if (status) throw Exception("[2] - post https://www1.plus.pl/sso/logowanie/auth");
+  
+  		form.Reset();
+  		form.AddField("smsType", "10");
+***************
+*** 50,57 ****
+  		form.AddField("groupId", "0");
+  		form.AddField("templateCategory", "0");
+  		form.AddField("targetURL", "/sms/send_sms.jsp");
+! 		status = curl.PerformPost("http://www.miastoplusa.pl/sms/SendSMS2.do", form.PostFields());
+! 		if (status) throw Exception("[3] - post http://www.miastoplusa.pl/sms/SendSMS2.do");
+  		
+  		ok = curl.Body().find("SMS przekazany do wys³ania") != string::npos;
+  		if (!ok) {
+--- 50,57 ----
+  		form.AddField("groupId", "0");
+  		form.AddField("templateCategory", "0");
+  		form.AddField("targetURL", "/sms/send_sms.jsp");
+! 		status = curl.PerformPost("http://www1.plus.pl/rozrywka_i_informacje/sms/SendSMS2.do", form.PostFields());
+! 		if (status) throw Exception("[3] - post http://www1.plus.pl/rozrywka_i_informacje/sms/SendSMS2.do");
+  		
+  		ok = curl.Body().find("SMS przekazany do wys³ania") != string::npos;
+  		if (!ok) {
+***************
+*** 61,67 ****
+  				throw Exception("[3] - " + match[0][1]);
+  		}
+  		
+! 		curl.PerformGet("http://www.miastoplusa.pl/minimal/logout_frameset.jsp");
+  		
+  		break;
+  	}
+--- 61,67 ----
+  				throw Exception("[3] - " + match[0][1]);
+  		}
+  		
+! 		curl.PerformGet("https://www1.plus.pl/sso/logowanie/form?TAM_OP=do.logout");
+  		
+  		break;
+  	}
+***************
+*** 84,118 ****
+  	curl.SetOpt(CURLOPT_COOKIEFILE, "");
+  	
+  	while (true) {
+! 		status = curl.PerformGet("http://www.miastoplusa.pl/");
+! 		if (status) throw Exception("[1] - get http://www.miastoplusa.pl/");
+  
+  		form.AddField("login", mp_user);
+  		form.AddField("password", mp_pass);
+  		form.AddField("x", "0");
+  		form.AddField("y", "0");
+! 		form.AddField("secureLogin", "on");
+! 		status = curl.PerformPost("https://www.miastoplusa.pl/auth/LoginCitizen.do", form.PostFields());
+! 		if (status) throw Exception("[2] - post https://www.miastoplusa.pl/auth/LoginCitizen.do");
+  		
+  		form.Reset();
+  		form.AddField("targetURL", "/sms/send_sms.jsp");
+! 		status = curl.PerformPost("http://www.miastoplusa.pl/sms/SendSMS2.do", form.PostFields());
+! 		if (status) throw Exception("[3] - post http://www.miastoplusa.pl/sms/SendSMS2.do");
+  		
+! 		if (PcreWrap::pcre_match_all("do sieci Plus GSM<\\/td><td align(.*?)>(.*?)<\\/td><\\/tr>", 
+  			curl.Body(), "mi", match)) {
+! 			st_plus = match[0][1];
+! 			if (PcreWrap::pcre_match_all("do innych sieci<\\/td><td align(.*?)>(.*?)<\\/td><\\/tr>",
+  				curl.Body(), "mi", match)) {
+! 				st_inne = match[0][1];
+  				ok = true;
+  			}
+  		}
+  		
+  		cout << "Twoje SMSy do sieci Plus GSM (" << st_plus << "), do innych sieci (" << st_inne << ")." << endl;
+  		
+! 		curl.PerformGet("http://www.miastoplusa.pl/minimal/logout_frameset.jsp");
+  		
+  		break;
+  	}
+--- 84,118 ----
+  	curl.SetOpt(CURLOPT_COOKIEFILE, "");
+  	
+  	while (true) {
+! 		status = curl.PerformGet("http://www1.plus.pl/");
+! 		if (status) throw Exception("[1] - get http://www1.plus.pl/");
+  
+  		form.AddField("login", mp_user);
+  		form.AddField("password", mp_pass);
+  		form.AddField("x", "0");
+  		form.AddField("y", "0");
+! 		form.AddField("op", "login");
+! 		status = curl.PerformPost("https://www1.plus.pl/sso/logowanie/auth", form.PostFields());
+! 		if (status) throw Exception("[2] - post https://www1.plus.pl/sso/logowanie/auth");
+  		
+  		form.Reset();
+  		form.AddField("targetURL", "/sms/send_sms.jsp");
+! 		status = curl.PerformPost("http://www1.plus.pl/rozrywka_i_informacje/sms/SendSMS2.do", form.PostFields());
+! 		if (status) throw Exception("[3] - post http://www1.plus.pl/rozrywka_i_informacje/sms/SendSMS2.do");
+  		
+! 		if (PcreWrap::pcre_match_all("do sieci Plus(.*)\n(.*)right\">(.*)<",
+  			curl.Body(), "mi", match)) {
+! 			st_plus = match[0][2];
+! 			if (PcreWrap::pcre_match_all("do innych sieci(.*)\n(.*)right\">(.*)<",
+  				curl.Body(), "mi", match)) {
+! 				st_inne = match[0][2];
+  				ok = true;
+  			}
+  		}
+  		
+  		cout << "Twoje SMSy do sieci Plus GSM (" << st_plus << "), do innych sieci (" << st_inne << ")." << endl;
+  		
+! 		curl.PerformGet("https://www1.plus.pl/sso/logowanie/form?TAM_OP=do.logout");
+  		
+  		break;
+  	}
